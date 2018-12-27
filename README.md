@@ -17,7 +17,7 @@ _First of all, we start with the geographic location of the customers and we are
 
 ![01](./Plots/state_vs_churn.png)
 
-_Since our target variable has a class imbalance problem, the data plotted as it is would not be so clear. Hence the churning out of customers is expressed as a relative percentage of the total number of customers from the respective state. As it is evident from the above bar chart, both the states of California and New Jersey have the highest percentage (26% approx.) of customers churning out. In layman&#39;s terms, it can be said that if a particular customer is from California or New Jersey, there is a pretty good chance that he will not be happy with the service provided. This can be because of various reasons like poor network coverage, inadequate customer service centres in customer locality etc.,         _
+_Since our target variable has a class imbalance problem, the data plotted as it is would not be so clear. Hence the churning out of customers is expressed as a relative percentage of the total number of customers from the respective state. As it is evident from the above bar chart, both the states of California and New Jersey have the highest percentage (26% approx.) of customers churning out. In layman&#39;s terms, it can be said that if a particular customer is from California or New Jersey, there is a pretty good chance that he will not be happy with the service provided. This can be because of various reasons like poor network coverage, inadequate customer service centres in customer locality etc.,_
 
 _Simple barplots depicting the satisfactory level of customers who have opted for international plan and Voice mail plan are given below:_
 
@@ -26,7 +26,7 @@ _Simple barplots depicting the satisfactory level of customers who have opted fo
 
 _Again, the bars are scaled with relative percentages. We can infer from the figures that the percentage of the customers who opted for voice mail plan and churned out is relatively lower that the customers who got out without experiencing voice mail service. On the contrary, A significant fraction of customers who opted for international plan churned out of the network (more than 40%). Simply speaking, if a customer is found to be on the verge of churning out, the service provider can consider providing voice mail service to him/her for a trail period free of cost. Also, the company should review the facilities provided as part of international plan as it turns out to be infamous._
 
-Having analysed the categorical variables, we shall now turn our attention towards the tariff details which take up the form of continuous predictor variables. We have plotted the respective boxplots for the tariff paid by the customers for the calls they made during different timings of a day (daytime, evening and night) and the plot for daytime is given below as an example:
+_Having analysed the categorical variables, we shall now turn our attention towards the tariff details which take up the form of continuous predictor variables. We have plotted the respective boxplots for the tariff paid by the customers for the calls they made during different timings of a day (daytime, evening and night) and the plot for daytime is given below as an example:_
 
 ![04](./Plots/day_to_churn.png)
 
