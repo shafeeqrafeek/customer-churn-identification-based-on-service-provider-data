@@ -137,7 +137,7 @@ _Hence, the primary focus of the model building stage is to build models with hi
 
 _This indicates that more than 84% of the observations relate to the customers not churning out (represented by numeric code 1) and a mere 15.6% of the data provides information about unsatisfied customers who churned out. If we were to blindly classify all the customers as belonging to the non-churning category in the training dataset, without considering any information, we would still be right about 84.4% of the time due to the class imbalance. This is called the_ **no information rate** _and we will have kept this parameter as our baseline while evaluating accuracy of various models. The different ways to overcome class imbalance problem are also discussed later in this chapter.  _
 
-## Addressing the target class imbalance problem
+### Addressing the target class imbalance problem
 
 _Before proceeding with model selection, we have to resolve the severe class imbalance problem that is found in the training dataset. As mentioned before, the ratio between observations available for positive and negative classes is hugely disproportionate. This causes the model to be biased and it will be inclined towards to majority class of the target variable. Therefore it is necessary to rectify this imbalance and the methods that can be used for the achieving balance are described below.
 
