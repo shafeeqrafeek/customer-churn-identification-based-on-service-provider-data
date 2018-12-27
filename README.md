@@ -15,37 +15,37 @@ _Here we highlight some of the predictor variables and the positive/negative inf
 
 _First of all, we start with the geographic location of the customers and we are interested in knowing how their location plays a role in satisfying their network needs. The below figure shows the relative percentage of customers that churned out in all the 50 states and in the national capital of USA._
 
-![01](.Customer_churn_identification/Plots/state_vs_churn.png)
+![01](./Customer_churn_identification/Plots/state_vs_churn.png)
 
 _Since our target variable has a class imbalance problem, the data plotted as it is would not be so clear. Hence the churning out of customers is expressed as a relative percentage of the total number of customers from the respective state. As it is evident from the above bar chart, both the states of California and New Jersey have the highest percentage (26% approx.) of customers churning out. In layman&#39;s terms, it can be said that if a particular customer is from California or New Jersey, there is a pretty good chance that he will not be happy with the service provided. This can be because of various reasons like poor network coverage, inadequate customer service centres in customer locality etc.,         _
 
 _Simple barplots depicting the satisfactory level of customers who have opted for international plan and Voice mail plan are given below:_
 
-![02](.Customer_churn_identification/Plots/intplan_vs_churn.png)
-![03](.Customer_churn_identification/Plots/vmail_vs_churn.png)
+![02](./Customer_churn_identification/Plots/intplan_vs_churn.png)
+![03](./Customer_churn_identification/Plots/vmail_vs_churn.png)
 
 _Again, the bars are scaled with relative percentages. We can infer from the figures that the percentage of the customers who opted for voice mail plan and churned out is relatively lower that the customers who got out without experiencing voice mail service. On the contrary, A significant fraction of customers who opted for international plan churned out of the network (more than 40%). Simply speaking, if a customer is found to be on the verge of churning out, the service provider can consider providing voice mail service to him/her for a trail period free of cost. Also, the company should review the facilities provided as part of international plan as it turns out to be infamous._
 
 Having analysed the categorical variables, we shall now turn our attention towards the tariff details which take up the form of continuous predictor variables. We have plotted the respective boxplots for the tariff paid by the customers for the calls they made during different timings of a day (daytime, evening and night) and the plot for daytime is given below as an example:
 
-![04](.Customer_churn_identification/Plots/day_to_churn.png)
+![04](./Customer_churn_identification/Plots/day_to_churn.png)
 
 _We could see that the quartile ranges are significantly lifted above in case of day tariff although the difference is barely visible for tariffs corresponding to evening and night timings. As will be demonstrated in correlation analysis, the duration in mins spent during a call is directly proportional to the tariff (charged on a minutely basis) and so people who spend a lot of time over the phone are more likely to churn out because of the heavy tariff imposed on them._
 
 _The variation of international call tariff with respect to international plan also reveals some information about the churning trend. we find that the boxplot distributions of international call tariff for customers who didn&#39;t opt for international plan is almost the same for churning/non-churning cases but once the international plan comes in as a factor, we find that the customers churned out as the tariff went up as shown below:_
 
-![05](.Customer_churn_identification/Plots/int_vs_churn.png)
+![05](./Customer_churn_identification/Plots/int_vs_churn.png)
 
 _This again highlights the point that whatever offers that are being provided under the international plan are not very efficient in keeping the customers satisfied._
 
-![06](.Customer_churn_identification/Plots/vmail_mess_vs_churn.png)
+![06](./Customer_churn_identification/Plots/vmail_mess_vs_churn.png)
 
 _The above figure illustrates the distribution of voice mail messages sent by customers who have subscribed for voice mail plan. These boxplots emphasises the simple fact that those who have sent more number of voice mail messages would be charged more and hence it indirectly influences the churning decision of the customer._
 
 _Before proceeding to the final analysis, it is necessary to point out a natural intuition that we get while looking at the relation between customer care calls and churning. If a customer calls the customer care numerous times, then it is safe to assume that he/she has grievances that needs to be addressed. Hence a high number (or abnormal number) of customer care calls indicate that the customer is reporting a lot of issues and hence becoming increasingly uncomfortable with the service._
 
-![06](.Customer_churn_identification/Plots/cust_boxplot.png)
-![07](.Customer_churn_identification/Plots/cust_calls_vs_churn.png)
+![06](./Customer_churn_identification/Plots/cust_boxplot.png)
+![07](./Customer_churn_identification/Plots/cust_calls_vs_churn.png)
 
 _Having said this, if we look at the figures above, a simple boxplot of the total number of customer care calls made by the customer suggests that there are lot of outliers in the distribution. But the moment, we facet the plot using churn, the outliers are significantly reduced. This indicates that the outliers are indeed not outliers but valid data points providing information about the churning decision. Taking this into account along with the results of the ANOVA test (described in later chapters),_ **outlier removal is not done for this particular predictor variable.**
 
@@ -78,7 +78,7 @@ _Moreover, if two or more predictor variables included in the dataset contains t
 
 _The following correlation plot illustrates the pairwise correlation between numerical variables of the dataset. The lower triangle and diagonal of the correlation matrix fed in to this heatmap are masked to avoid redundancy._
 
-![08](.Customer_churn_identification/Plots/heat_map.png)
+![08](./Customer_churn_identification/Plots/heat_map.png)
 
 _The value of correlation coefficient ranges between +1 to -1, +1 being highly positively correlated and -1 being highly negatively correlated. As we can see from the above heatmap, number of minutes spent on the phone is strongly correlated with the respective charges which is obvious because the customers are charged on a minutely basis. In fact, there is a constant amount per minute fixed by the network company and the total charge is an exact multiple of this base amount._
 
