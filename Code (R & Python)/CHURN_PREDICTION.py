@@ -1,9 +1,3 @@
-
-# coding: utf-8
-
-# In[1]:
-
-
 import os
 import numpy as np
 import pandas as pd
@@ -21,10 +15,6 @@ from sklearn.ensemble import RandomForestClassifier
 os.chdir("F:\Data Analytics\Edwisor Project\Churn Identification Project")
 os.getcwd()
 
-
-# In[2]:
-
-
 def dtype_order(df):
     fact,num=[],[]
     for i in df.columns:
@@ -39,24 +29,13 @@ def dtype_order(df):
         df[i]=df[i].astype('category')
     return num,fact
 
-
-# In[3]:
-
-
 churn=pd.read_csv("train_data.csv")
 test=pd.read_csv("test_data.csv")
-
-
-# In[4]:
-
 
 churn['phone number']=churn['phone number'].str.replace("-","")
 churn['phone number']=churn['phone number'].astype('int')
 churn['area code']=churn['area code'].astype('object')
 churn_numeric,churn_fact=dtype_order(churn)
-
-
-# In[5]:
 
 
 #Exploratory Data Analysis
@@ -72,43 +51,33 @@ def bar_visual(categ_a,categ_b,heading):
     return t
 
 
-# In[6]:
-
-
 bar_visual('state','Churn','state vs churn')
 bar_visual('voice mail plan','Churn','voicemail plan vs churn')
 bar_visual('international plan','Churn','international plan vs churn')
 
-
-# In[10]:
 
 
 sns.boxplot(churn['Churn'],churn['total day charge'])
 plt.title("day tariff vs Churn")
 
 
-# In[8]:
-
 
 sns.boxplot(churn['Churn'],churn['total eve charge'])
 plt.title("evening tariff vs Churn")
 
 
-# In[9]:
 
 
 sns.boxplot(churn['Churn'],churn['total night charge'])
 plt.title("night tariff vs Churn")
 
 
-# In[11]:
 
 
 sns.boxplot('international plan','total intl charge',hue='Churn',data=churn)
 plt.title("intl call charges based on intl plan")
 
 
-# In[20]:
 
 
 a=churn.loc[churn['voice mail plan']==1]
@@ -116,14 +85,12 @@ sns.boxplot('voice mail plan','number vmail messages',hue='Churn',data=a)
 plt.title("vmail messages based on vmail plan")
 
 
-# In[21]:
 
 
 sns.boxplot(churn['Churn'],churn['number customer service calls'])
 plt.title("customer calls vs Churn")
 
 
-# In[27]:
 
 
 df_corr=churn.loc[:,churn_numeric]
@@ -133,7 +100,6 @@ pl=sns.diverging_palette(10,220,as_cmap=True)
 sns.heatmap(df_corr,cmap=pl,square=True,vmin=-0.6)
 
 
-# In[24]:
 
 
 # chi_square
@@ -147,7 +113,6 @@ def Chi_Sqre_test(df,fact,trgt):
     return col_to_consider
 
 
-# In[25]:
 
 
 def anova_test(df,num,trgt):
@@ -159,7 +124,6 @@ def anova_test(df,num,trgt):
     return np.array(col_to_consider)
 
 
-# In[26]:
 
 
 def corr_test(df,num,t=0.85):
@@ -173,7 +137,6 @@ def corr_test(df,num,t=0.85):
     return np.array(cols_to_consider)
 
 
-# In[28]:
 
 
 def normalize(df,num):
@@ -181,7 +144,6 @@ def normalize(df,num):
         df[i]=(df[i]-np.min(df[i]))/(np.max(df[i])-np.min(df[i]))
 
 
-# In[22]:
 
 
 #OUTLIER REMOVAL
@@ -202,13 +164,10 @@ churn.reset_index(inplace=True,drop=True)
 # median                 30.5
 # KNN                    29.88962811568968
 
-# In[23]:
 
 
 churn=pd.DataFrame(KNN(k=3).complete(churn),columns=churn.columns)
 
-
-# In[29]:
 
 
 valid_facts=Chi_Sqre_test(churn,churn_fact,'Churn')+['Churn']
@@ -218,7 +177,6 @@ valid_nums=list(np.setdiff1d(valid_cols1,valid_cols2))
 cols=valid_nums+valid_facts
 
 
-# In[30]:
 
 
 churn=churn.loc[:,cols]
@@ -228,14 +186,11 @@ for i in valid_facts:
 churn_model['Churn']=churn_model['Churn'].astype('category')
 
 
-# In[31]:
 
 
 normalize(churn,valid_nums)
 normalize(churn_model,valid_nums)
 
-
-# In[32]:
 
 
 test_num,test_fact=dtype_order(test)
@@ -243,7 +198,6 @@ test=test.loc[:,cols]
 normalize(test,valid_nums)
 
 
-# In[33]:
 
 
 xtest=test.iloc[:,0:len(cols)-1]
@@ -251,8 +205,6 @@ ytest=test['Churn']
 xtrain=churn.iloc[:,0:len(cols)-1]
 ytrain=pd.DataFrame(churn['Churn'],columns=['Churn'])
 
-
-# In[34]:
 
 
 # Performance metrics
@@ -272,7 +224,6 @@ def perf(true_val,predict_val):
 
 # # Logistic Regression
 
-# In[35]:
 
 
 #Data preparation for logistic regression
@@ -285,7 +236,6 @@ xtest_logit['international plan']=xtest_logit['international plan'].astype('floa
 xtest_logit['voice mail plan']=xtest_logit['voice mail plan'].astype('float64')
 
 
-# In[36]:
 
 
 #Logistic Regression
@@ -295,8 +245,6 @@ logit_predictions['value']=1
 logit_predictions.loc[logit_predictions.probs<0.5,'value']=0
 
 
-# In[37]:
-
 
 #logistic_regression
 perf(ytest,logit_predictions['value'])
@@ -304,15 +252,12 @@ perf(ytest,logit_predictions['value'])
 
 # # Naive Bayes
 
-# In[38]:
-
 
 #Naive Bayes
 NB_churn=GaussianNB().fit(xtrain,ytrain)
 NB_predictions=NB_churn.predict(xtest)
 
 
-# In[39]:
 
 
 #Naive Bayes
@@ -321,7 +266,6 @@ perf(ytest,NB_predictions)
 
 # # Decision Tree
 
-# In[40]:
 
 
 #Decision Tree
@@ -329,7 +273,6 @@ DT_churn=tree.DecisionTreeClassifier(criterion='entropy').fit(xtrain,ytrain)
 DT_predictions=DT_churn.predict(xtest)
 
 
-# In[41]:
 
 
 #Decision Tree
@@ -338,7 +281,6 @@ perf(ytest,DT_predictions)
 
 # # Random Forest
 
-# In[42]:
 
 
 #Random Forest
@@ -346,7 +288,6 @@ RF_churn=RandomForestClassifier().fit(xtrain,ytrain)
 RF_predictions=RF_churn.predict(xtest)
 
 
-# In[43]:
 
 
 #Random Forest
@@ -355,28 +296,24 @@ perf(ytest,RF_predictions)
 
 # # resolving class imbalance
 
-# In[44]:
 
 
 from imblearn.under_sampling import RandomUnderSampler
 from imblearn.over_sampling import RandomOverSampler
 
 
-# In[45]:
 
 
 under=RandomUnderSampler(sampling_strategy=0.25, return_indices=False, random_state=None, replacement=False)
 xunder,yunder=under.fit_resample(xtrain,ytrain)
 
 
-# In[46]:
 
 
 over=RandomOverSampler(sampling_strategy='minority', return_indices=False, random_state=None, ratio=None)
 xover,yover=over.fit_resample(xunder,yunder)
 
 
-# In[47]:
 
 
 RF_churn_bl=RandomForestClassifier().fit(xover,yover)
